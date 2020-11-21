@@ -6,7 +6,8 @@ import 'game.dart';
 class RowShape extends StatefulWidget{
   Game game;
   int rowNum;
-  RowShape({this.game,this.rowNum});
+  void Function(String) changeView;
+  RowShape({this.game,this.rowNum,this.changeView});
 
   @override
   State<StatefulWidget> createState() {
@@ -22,7 +23,7 @@ class RowShapeState extends State<RowShape>{
     List column = [0,1,2];
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: column.map<Widget>((colNum) => Shape(game:widget.game,row:widget.rowNum,column:colNum)).toList(),
+      children: column.map<Widget>((colNum) => Shape(game:widget.game,row:widget.rowNum,column:colNum,changeView: widget.changeView)).toList(),
     );
   }
 

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app2/RowShape.dart';
+import 'package:flutter_app2/game.dart';
+
+import 'WinnerScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,6 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -19,30 +23,25 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
+// ignore: must_be_immutable
+class MyHomePage extends StatefulWidget{
+  String title;
+  MyHomePage({this.title});
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<StatefulWidget> createState() {
+    return new MyHomePageState();
+  }
+
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class MyHomePageState extends State<MyHomePage> {
+  final Game game= new Game();
 
-  void _incrementCounter() {
+  void changeView(String winner) async{
+    print("------------------- Entro winner");
+    var back = await Navigator.push(context, MaterialPageRoute(builder: (context)=>new WinnerScreen(winner: winner)));
     setState(() {
-      _counter++;
+      game.restart();
     });
   }
 
@@ -57,8 +56,8 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [0,1,2].map<Widget>((i){
-            return RowShape(game:null,rowNum: i);
-          }).toList(),
+            return RowShape(game:game,rowNum: i,changeView:this.changeView);
+          }).toList()
         ),
       ),
     );
