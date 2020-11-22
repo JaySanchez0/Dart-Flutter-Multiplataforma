@@ -1,6 +1,31 @@
-# flutter_app2
+# Tricky Flutter
 
 A new Flutter application.
+
+
+### Flutter Run App
+
+Run APK for Debug
+
+~~~
+
+    flutter run
+
+~~~
+
+### Build APK
+
+~~~
+    flutter build apk --split-per-abi
+~~~
+
+### Install build APK
+
+~~~
+
+    flutter install
+
+~~~
 
 ## Getting Started
 

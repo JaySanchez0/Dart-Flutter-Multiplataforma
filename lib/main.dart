@@ -55,9 +55,22 @@ class MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [0,1,2].map<Widget>((i){
-            return RowShape(game:game,rowNum: i,changeView:this.changeView);
-          }).toList()
+          children:<Widget>[
+            Column( 
+              children:[0,1,2].map<Widget>((i){
+                  return RowShape(game:game,rowNum: i,changeView:this.changeView);
+                }).toList()
+            ),Column(
+              children: [OutlineButton(
+                child: Text("Restart"),
+                onPressed: (){
+                  setState(() {
+                    game.restart();
+                  });
+                }
+              )]
+            )
+          ]
         ),
       ),
     );

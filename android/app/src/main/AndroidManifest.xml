@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.flutter_app2">
    <application
-        android:label="flutter_app2"
+        android:label="Tricky Fluuter"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
